@@ -21,3 +21,48 @@ exports.updateUserValidation = [
     .withMessage('Description must be at least 10 characters long'),
   validFields,
 ];
+
+exports.createUserValidation = [
+  body('name').notEmpty().withMessage('Name is required'),
+  body('email')
+    .notEmpty()
+    .withMessage('Email is required')
+    .isEmail()
+    .withMessage('Email must be a correct email'),
+  body('password')
+    .isLength({ min: 8 })
+    .withMessage('Password must be at least 8 characters long')
+    .matches(/[a-zA-Z]/)
+    .withMessage('Password must have at least 1 letter'),
+  body('description').notEmpty().withMessage('Description is required'),
+  validFields,
+];
+
+exports.loginUserValidation = [
+  body('email')
+    .notEmpty()
+    .withMessage('Email is required')
+    .isEmail()
+    .withMessage('Email must be a correct email'),
+  body('password')
+    .isLength({ min: 8 })
+    .withMessage('Password must be at least 8 characters long')
+    .matches(/[a-zA-Z]/)
+    .withMessage('Password must have at least 1 letter'),
+  validFields,
+],
+
+  exports.updatePasswordValidation = [
+    body('currentPassword')
+      .isLength({ min: 8 })
+      .withMessage('Password must be at least 8 characters long')
+      .matches(/[a-zA-Z]/)
+      .withMessage('Password must have at least 1 letter'),
+    body('newPassword')
+      .isLength({ min: 8 })
+      .withMessage('Password must be at least 8 characters long')
+      .matches(/[a-zA-Z]/)
+      .withMessage('Password must have at least 1 letter'),
+    validFields,
+
+  ]
