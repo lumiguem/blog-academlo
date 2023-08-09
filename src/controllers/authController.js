@@ -74,7 +74,7 @@ exports.updatePassword = catchAsync(async (req, res, next) => {
   const { currentPassword, newPassword } = req.body;
   // 3. validar si la constraseña actual y nueva son iguales enviar un error
   if (currentPassword === newPassword) {
-    return next(new AppError('The password cannot be the same'));
+    return next(new AppError('The password cannot be the same', 400));
   }
 
   // 4. validar que la contraseña actual es igual a la contraseña en bd

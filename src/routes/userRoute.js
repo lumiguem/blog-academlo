@@ -4,8 +4,10 @@ const userController = require('./../controllers/userController');
 
 const userMiddleware = require('../middlewares/userMiddleware');
 const validationMiddleware = require('../middlewares/validationMiddleware');
-
+const authMiddleware = require('../middlewares/authMiddleware')
 const router = express.Router();
+
+router.use(authMiddleware.protect)
 
 router.get('/', userController.findAllUsers);
 

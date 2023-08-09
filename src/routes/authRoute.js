@@ -6,6 +6,7 @@ const authController = require('../controllers/authController');
 // middlewares
 const validationMiddleware = require('./../middlewares/validationMiddleware')
 const userMiddleware = require('../middlewares/userMiddleware')
+const authMiddleware = require('../middlewares/authMiddleware')
 
 const router = express.Router();
 
@@ -22,6 +23,8 @@ router.post(
     '/signin',
     validationMiddleware.loginUserValidation,
     authController.signIn);
+
+router.use(authMiddleware.protect);
 
 router.patch(
     '/password/:id',
