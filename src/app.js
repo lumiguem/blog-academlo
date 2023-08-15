@@ -1,12 +1,16 @@
-const express = require('express');
 const cors = require('cors');
+const express = require('express');
 const morgan = require('morgan');
+
 const AppError = require('./utils/appError');
+const globalErrorHandler = require('./controllers/errorController');
 
 // routes
 const userRoutes = require('./routes/userRoute');
 const authRoutes = require('./routes/authRoute');
-const globalErrorHandler = require('./controllers/errorController');
+const postRoutes = require('./routes/postRoute');
+const commentRoutes = require('./routes/commentRoute');
+
 
 const app = express();
 
@@ -20,6 +24,8 @@ if (process.env.NODE_ENV === 'development') {
 //routes
 app.use('/api/v1/users', userRoutes);
 app.use('/api/v1/auths', authRoutes);
+app.use('/api/v1/posts', postRoutes);
+app.use('/api/v1/comments', commentRoutes);
 
 app.all('*', (req, res, next) => {
   return next(

@@ -50,7 +50,7 @@ const User = db.define('users', {
   },
 
   status: {
-    type: DataTypes.ENUM('active', 'inactive'),
+    type: DataTypes.ENUM('active', 'disabled'),
     allowNull: false,
     defaultValue: 'active',
   },

@@ -66,3 +66,20 @@ exports.loginUserValidation = [
     validFields,
 
   ]
+
+exports.createPostValidation = [
+  body('title').notEmpty().withMessage('Title is required'),
+  body('content').notEmpty().withMessage('Content is required'),
+  validFields,
+];
+
+exports.createCommentValidation = [
+  body('text').notEmpty().withMessage('Text is required'),
+  body('postId').notEmpty().withMessage('PostId is required'),
+  validFields
+];
+
+exports.updateCommentValidation = [
+  body('text').notEmpty().withMessage('Text is required'),
+  validFields
+]

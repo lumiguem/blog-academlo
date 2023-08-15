@@ -30,6 +30,7 @@ router.patch(
     '/password/:id',
     validationMiddleware.updatePasswordValidation,
     userMiddleware.validUser,
+    authMiddleware.protectAccountOwner,
     authController.updatePassword
 );
 
