@@ -1,4 +1,5 @@
 const AppError = require("../utils/appError");
+const Error = require('../models/errorModel');
 
 const handleCastError22001 = () =>
   new AppError('The number of characters is grater than expected', 400)
@@ -18,6 +19,11 @@ const handleCastError23505 = () =>
 
 
 const sendErrorDev = (err, res) => {
+  Error.create({
+    status: err.status,
+    message: err.message,
+    stack: err.stack,
+  });
   console.log(err);
   return res.status(err.statusCode).json({
     status: err.status,
@@ -28,6 +34,7 @@ const sendErrorDev = (err, res) => {
 };
 
 const sendErrorProd = (err, res) => {
+
   console.log(err);
   //operational, trusted error: send message to client
   if (err.isOperational) {
